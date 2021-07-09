@@ -2,6 +2,7 @@
   <div class="hello">
 
     <div class="login_box">
+         <span class="title">物流登录系统</span>
          <div>
            <input placeholder="请输入账号"  v-model="account">
          </div>
@@ -49,13 +50,44 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .hello {
+      width: 100%;
+      height: 100%;
+      padding-top: 30%;
+      background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F1fb8347b861c5a8f94a0288558e38d19c24a9e7826d25-rkvX2A_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628419076&t=bbf6e85238f9c1eaf117518daf474486");
+      background-repeat: no-repeat;
+
+    }
+    .title {
+      font-size: 1.5rem;
+    }
+   .login_box {
+     width: 80%;
+     text-align: center;
+     padding: 5rem 0;
+     background-color: #ffffff;
+     margin: auto;
+     border-radius: 2rem;
+     opacity: 0.5;
+
+   }
    input {
-     height: 30px;
+     width: 70%;
+     height: 3rem;
      margin-top: 15px;
+     padding-left: 1rem;
+     border: 0;
+     outline: none;
+     border-bottom: 0.1rem solid gainsboro;
    }
    .loginBtn {
-     width: 100px;
-     height: 45px;
-     margin-top: 15px;
+     width: 70%;
+     height: 3rem;
+     margin-top: 2rem;
+     border: 0;
+     background-color: #317ee7;
+     border-radius: 3rem;
+     color: white;
+     font-size: 1rem;
    }
 </style>
