@@ -1,0 +1,11 @@
+{
+  "name": "com.test.demp",
+  "version": "1.0.0",
+  "description": "'测试vue项目'",
+  "main": "index.js",
+  "scripts": {
+    "test": "aa"
+  },
+  "author": "呆呆",
+  "license": "ISC"
+}

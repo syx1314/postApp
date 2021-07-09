@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsAndroid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <button class="btn">点击</button>
+  <button class="btn" onclick="pay()">点击</button>
+  <button class="aaa" onclick="openApp()">打开app</button>
+  <script>
+
+      let btn = document.querySelector(".btn");
+      console.dir(btn)
+      function setupWebViewJavascriptBridge(callback) {
+          if (window.WebViewJavascriptBridge) {
+              return callback(WebViewJavascriptBridge);
+          }
+          if (window.WVJBCallbacks) {
+              return window.WVJBCallbacks.push(callback);
+          }
+          window.WVJBCallbacks = [callback];
+      }
+      btn.addEventListener("click",function (e){
+           console.error("点击了我")
+
+      })
+      function getFromAndroid(decodeName,decodeTel,decodeAddress) {
+          alert("拿到的数据"+decodeURIComponent(atob(decodeName))+"=--"+decodeTel+"=--"+decodeAddress)
+      }
+      function pay() {
+          //调用本地java方法
+          window.WebViewJavascriptBridge.callHandler(
+              'startPay'
+              , {'param': str1}
+              , function(responseData) {
+                  document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+              }
+              );
+      }
+      function openApp() {
+
+          window.location.href="https://a.app.qq.com/o/simple.jsp?pkgname=com.u17.comic.phone";
+      }
+
+  </script>
+</body>
+</html>
