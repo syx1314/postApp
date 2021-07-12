@@ -15,6 +15,13 @@
        <div>商品信息</div>
        <input placeholder='请输入物品信息' v-model='shopName'/>
        <input type='number' placeholder='请输入物品kg' v-model='wight' @blur="checkMatchChannel">
+       <div class="my_price_box">
+         <input placeholder='请输入物品运费' v-model='myPrice'/>
+         <input type="radio" v-model='channel' value="微信" checked /><span>微信</span>
+         <input type="radio" v-model='channel' value="支付宝"/><span>支付宝</span>
+         <input type="radio" v-model='channel' value="闲鱼"/><spna>闲鱼</spna>
+       </div>
+
      </div>
      <div class='bottom'>
 
@@ -42,6 +49,8 @@ export default {
       shopName: '',
       wight: 1,
       maxPrice: 0,
+      channel:'',
+      myPrice:'',
       show: false
     }
   },
@@ -103,6 +112,10 @@ export default {
         alert('请输入商品名字 或者重量')
         return
       }
+      if (!this.myPrice) {
+        alert('请输入运费')
+        return
+      }
       this.show = false
       let order = {
         'shopbill': null,
@@ -145,8 +158,8 @@ export default {
         'collectionMoney': null,
         'tempReceiveAddress': this.receiveAddres['province'] + this.receiveAddres['city'] + this.receiveAddres['county'] + this.receiveAddres['address'] + this.receiveAddres['contact'] + this.receiveAddres['mobile'],
         'tempSendAddress': this.sendAddress['province'] + this.sendAddress['city'] + this.sendAddress['county'] + this.sendAddress['address'] + this.sendAddress['contact'] + this.sendAddress['mobile'],
-        'customerFreight': '9',
-        'customerFreightType': '闲鱼',
+        'customerFreight': this.myPrice,
+        'customerFreightType': this.channel,
         'linkName': 'yywl-袁宇进'
       }
       this.$post('/jdserver2/addBill', order).then((res) => {
@@ -241,6 +254,19 @@ export default {
     font-size: 2rem;
     color: red;
     font-weight: 500;
+  }
+  .my_price_box {
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  .my_price_box input {
+    float: left;
+    margin-top: -.2rem;
+    margin-right: 0.5rem;
+  }
+  .my_price_box span {
+    float: left;
+    margin-right: 0.5rem;
   }
   .createOrder {
     float: right;
